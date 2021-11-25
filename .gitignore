@@ -39,3 +39,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Unity files not from standard .gitignore that I think should be ignored
+Logs/
+UserSettings/
+.vsconfig
