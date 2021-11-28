@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -10,6 +11,7 @@ using UnityEditor;
 public class MenuManager : MonoBehaviour
 {
     public BestScoreText bestScoreText;
+    public TMP_InputField nameInput;
 
     private void Start()
     {
@@ -28,5 +30,10 @@ public class MenuManager : MonoBehaviour
 #else
         Application.Quit(); // original code to quit Unity player
 #endif
+    }
+
+    public void SetName()
+    {
+        DataManager.Instance.scoreData.currentName = nameInput.text;
     }
 }
