@@ -10,7 +10,7 @@ public class MainManager : MonoBehaviour
     public int LineCount = 6;
     public Rigidbody Ball;
 
-    public Text ScoreText;
+    public CurrentScoreText currentScoreText;
     public GameObject GameOverText;
     public BestScoreText bestScoreText;
     
@@ -26,6 +26,7 @@ public class MainManager : MonoBehaviour
         if (DataManager.Instance != null)
         {
             bestScoreText.SetBestScore(DataManager.Instance.scoreData);
+            currentScoreText.SetCurrentScore(DataManager.Instance.scoreData);
         }
 
         const float step = 0.6f;
@@ -71,7 +72,11 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        if (DataManager.Instance != null)
+        {
+            DataManager.Instance.scoreData.currentScore = m_Points;
+            currentScoreText.SetCurrentScore(DataManager.Instance.scoreData);
+        }
     }
 
     public void GameOver()
