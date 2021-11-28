@@ -9,6 +9,13 @@ using UnityEditor;
 
 public class MenuManager : MonoBehaviour
 {
+    public BestScoreText bestScoreText;
+
+    private void Start()
+    {
+        bestScoreText.SetBestScore(DataManager.Instance.scoreData); 
+    }
+
     public void StartGame()
     {
         SceneManager.LoadScene("main");
