@@ -82,6 +82,19 @@ public class MainManager : MonoBehaviour
     public void GameOver()
     {
         m_GameOver = true;
+
+        if (DataManager.Instance != null)
+        {
+            if (DataManager.Instance.scoreData.currentScore > DataManager.Instance.scoreData.bestScore)
+            {
+                DataManager.Instance.scoreData.bestScore = DataManager.Instance.scoreData.currentScore;
+                DataManager.Instance.scoreData.bestName = DataManager.Instance.scoreData.currentName;
+            }
+            DataManager.Instance.scoreData.currentScore = 0;
+
+            DataManager.Instance.SaveToFile();
+        }
+
         GameOverText.SetActive(true);
     }
 }
